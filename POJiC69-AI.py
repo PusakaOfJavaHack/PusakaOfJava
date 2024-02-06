@@ -1,66 +1,63 @@
 import torch
-import torch.nn as nn
-import torch.optim as optim
 import pandas as pd
-import time
+from tqdm import tqdm
+from torch.utils.data import DataLoader, TensorDataset
+from torch.nn import Module, Linear, MSELoss, Adam
 
-# Dummy function for random data generation
-def generate_random_data(keyword):
-    # Replace with your actual data generation logic
-    return pd.DataFrame({'Feature1': [1, 2, 3], 'Feature2': [4, 5, 6]}, columns=['Feature1', 'Feature2'])
+# Define POJiC69 AI model
+class POJiC69Model(Module):
+    def __init__(self, input_size, output_size):
+        super(POJiC69Model, self).__init__()
+        self.linear = Linear(input_size, output_size)
 
-# Dummy function for visual animation progress
-def animate_progress(step_name):
-    print(f"Start\n{step_name}")
-    time.sleep(1)
-    print("Stop")
+    def forward(self, x):
+        return self.linear(x)
 
-# Visual progress: Step 1
-animate_progress("Coding PyTorch POJiC69 AI model with step role")
+# Create progressbar2
+for _ in tqdm(range(100), desc="Training Progress"):
+    # Training code goes here
 
-# Visual progress: Step 2
-animate_progress("Create PyTorch random Generate datasheet from keyword 'handling','missing values','feature scaling','preprocessing', save as Mtrix-4thy.cvs")
-matrix_4thy_data = generate_random_data("handling")
-matrix_4thy_data.to_csv('Mtrix-4thy.csv', index=False)
+# Create PyTorch random Generate datasheet
+def generate_datasheet(keywords, filename):
+    # Generate data based on keywords and save as CSV
+    # ...
 
-# Visual progress: Step 3
-animate_progress("Create PyTorch random Generate datasheet from keyword 'General AI (AGI)' save as General-AI(AGI).cvs")
-general_ai_data = generate_random_data("General AI (AGI)")
-general_ai_data.to_csv('General-AI(AGI).csv', index=False)
+# Generate datasheets
+generate_datasheet(["handling", "missing values", "feature scaling", "preprocessing"], "Matrix-4thy.csv")
+generate_datasheet(["logic for data generation based on keyword", "General AI (AGI)"], "General-AI(AGI).csv")
+generate_datasheet(["logic for data generation based on keyword", "Narrow AI"], "Narrow-AI.csv")
+generate_datasheet(["logic for data generation based on keyword", "Theory of Mind"], "Theory-of-Mind.csv")
+generate_datasheet(["logic for data generation based on keyword", "Self-awareness"], "Self-awareness.csv")
 
-# Visual progress: Step 4
-animate_progress("Create PyTorch random Generate datasheet from keyword 'Narrow AI' save as Narrow-AI .cvs")
-narrow_ai_data = generate_random_data("Narrow AI")
-narrow_ai_data.to_csv('Narrow-AI.csv', index=False)
+# Create new data combining existing data
+general_ai = pd.read_csv("General-AI(AGI).csv")
+self_awareness = pd.read_csv("Self-awareness.csv")
+narrow_ai = pd.read_csv("Narrow-AI.csv")
+theory_of_mind = pd.read_csv("Theory-of-Mind.csv")
 
-# Visual progress: Step 5
-animate_progress("Create PyTorch random Generate datasheet from keyword 'Theory of Mind' save as Theory-of.Mind.cvs")
-theory_of_mind_data = generate_random_data("Theory of Mind")
-theory_of_mind_data.to_csv('Theory-of.Mind.csv', index=False)
+new_data = 0.7 * (general_ai + self_awareness) + 0.3 * (narrow_ai / theory_of_mind)
+new_data.to_csv("LOV-e.Alhg.csv", index=False)
 
-# Visual progress: Step 6
-animate_progress("Create PyTorch random Generate datasheet from keyword 'Self-awareness' save as Self-awareness.cvs")
-self_awareness_data = generate_random_data("Self-awareness")
-self_awareness_data.to_csv('Self-awareness.cvs', index=False)
+# Create Auto-AI-training and regeneration logic
+lov_e_alhg = pd.read_csv("LOV-e.Alhg.csv")
+matrix_4thy = pd.read_csv("Matrix-4thy.csv")
 
-# Visual progress: Step 7
-animate_progress("Create new data with tolerance is 70% combine with resistance 30% from calculate results formula where General-AI(AGI).cvs + Self-awareness.cvs + ( Narrow-AI .cvs / Theory-of.Mind.cvs) save as LOV-e.Alhg.cvs")
-tolerance = 0.7
-resistance = 0.3
-love_alhg_data = general_ai_data + self_awareness_data + (narrow_ai_data / theory_of_mind_data * tolerance) + (resistance * 0.3)
-love_alhg_data.to_csv('LOV-e.Alhg.csv', index=False)
+dataset = TensorDataset(torch.Tensor(lov_e_alhg.values), torch.Tensor(matrix_4thy.values))
+dataloader = DataLoader(dataset, batch_size=64, shuffle=True)
 
-# Visual progress: Step 8
-animate_progress("Create Auto-AI-training and regeneration logic from LOV-e.Alhg.cvs combine with Mtrix-4thy.cvs")
-# Add your actual Auto-AI-training and regeneration logic
+# Training logic for Auto-AI
+model = POJiC69Model(input_size=len(lov_e_alhg.columns), output_size=len(matrix_4thy.columns))
+criterion = MSELoss()
+optimizer = Adam(model.parameters(), lr=0.001)
 
-# Visual progress: Step 9
-animate_progress("Create logic for auto AI training and regeneration using the data from both CSVs save as pill.cvs")
-# Add your actual logic for auto AI training and regeneration
+for epoch in range(10):
+    for inputs, targets in dataloader:
+        optimizer.zero_grad()
+        outputs = model(inputs)
+        loss = criterion(outputs, targets)
+        loss.backward()
+        optimizer.step()
 
-# Visual progress: Step 10
-animate_progress("Add your logic for auto AI training and regeneration using the data from both pill.cvs with specific auto-upgrade logic: Increase all parameters by 0,001% and appropriate loss function is 0,001%")
-# Add your actual auto-upgrade logic
-
-# Visual progress: Finish
-print("Finish animation")
+# Logic for auto AI training and regeneration
+pill_data = torch.add(lov_e_alhg, 0.00001 * lov_e_alhg)
+pill_data.to_csv("pill.csv", index=False)
