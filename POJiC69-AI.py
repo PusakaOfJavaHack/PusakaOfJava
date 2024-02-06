@@ -4,6 +4,7 @@ from sklearn.model_selection import train_test_split
 from flask import Flask, request, jsonify
 
 # 1. Natural Language Processing (NLP)
+spacy.cli.download("en_core_web_sm")
 nlp = spacy.load("en_core_web_sm")
 
 def analyze_description(description):
