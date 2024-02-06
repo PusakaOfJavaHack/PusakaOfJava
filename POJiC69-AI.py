@@ -41,6 +41,10 @@ new_data.to_csv("LOV-e.Alhg.csv", index=False)
 lov_e_alhg = pd.read_csv("LOV-e.Alhg.csv").astype(float)
 matrix_4thy = pd.read_csv("Matrix-4thy.csv").astype(float)
 
+# Check if the datasets have any samples
+if len(lov_e_alhg) == 0 or len(matrix_4thy) == 0:
+    raise ValueError("The datasets have no samples. Check your data loading.")
+
 dataset = TensorDataset(torch.Tensor(lov_e_alhg.values), torch.Tensor(matrix_4thy.values))
 dataloader = DataLoader(dataset, batch_size=64, shuffle=True)
 
