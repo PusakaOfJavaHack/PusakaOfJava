@@ -2,7 +2,8 @@ import torch
 import pandas as pd
 from tqdm import tqdm
 from torch.utils.data import DataLoader, TensorDataset
-from torch.nn import Module, Linear, MSELoss, Adam
+from torch.nn import Module, Linear, MSELoss
+from torch.optim import Adam
 
 # Create POJiC69 AI model
 class POJiC69Model(Module):
