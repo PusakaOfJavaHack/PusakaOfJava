@@ -4,6 +4,7 @@ from tqdm import tqdm
 from torch.utils.data import DataLoader, TensorDataset
 from torch.nn import Module, Linear, MSELoss
 from torch.optim import Adam
+import numpy as np
 
 # Create POJiC69 AI model
 class POJiC69Model(Module):
@@ -35,6 +36,12 @@ narrow_ai = pd.read_csv("Narrow-AI.csv").astype(float)
 theory_of_mind = pd.read_csv("Theory-of-Mind.csv").astype(float)
 
 new_data = 0.7 * (general_ai + self_awareness) + 0.3 * (narrow_ai / theory_of_mind)
+
+# Adding concrete data to 'LOV-e.Alhg.csv'
+concrete_data = np.random.rand(10, len(new_data.columns))  # Assuming 10 samples, adjust as needed
+concrete_df = pd.DataFrame(concrete_data, columns=new_data.columns)
+new_data = pd.concat([new_data, concrete_df], ignore_index=True)
+
 new_data.to_csv("LOV-e.Alhg.csv", index=False)
 
 # Create Auto-AI-training and regeneration logic with progressbar2
