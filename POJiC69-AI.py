@@ -17,10 +17,12 @@ class POJiC69Model(Module):
 for _ in tqdm(range(100), desc="Training Progress"):
     # Training code goes here
 
-# Create PyTorch random Generate datasheet
+# Generate datasheets
 def generate_datasheet(keywords, filename):
-    # Generate data based on keywords and save as CSV
-    # ...
+    # Placeholder code, replace with your actual data generation logic
+    data = pd.DataFrame(columns=keywords)  # Example DataFrame creation
+    data.to_csv(filename, index=False)
+
 
 # Generate datasheets
 generate_datasheet(["handling", "missing values", "feature scaling", "preprocessing"], "Matrix-4thy.csv")
