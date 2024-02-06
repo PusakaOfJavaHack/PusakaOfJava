@@ -1,22 +1,30 @@
 import torch
-import torch.nn.functional as F
+import torch.nn as nn
+import torch.optim as optim
 import pandas as pd
 
-# Step 1: Generate synthetic data based on keywords for Mtrix-4thy.csv
+# Step 1: Generate datasheet from keyword "logic for data generation based on keyword"
 keywords_list_4thy = ["handling", "missing values", "feature scaling", "preprocessing"]
-matrix_4thy_data = torch.rand((100, len(keywords_list_4thy)))  # Replace with your data generation logic
-matrix_4thy_df = pd.DataFrame(matrix_4thy_data.numpy(), columns=keywords_list_4thy)
-matrix_4thy_df.to_csv('Mtrix-4thy.csv', index=False)
 
-# Step 2: Generate synthetic data for General-AI(AGI).cvs, Narrow-AI.cvs, Theory-of.Mind.cvs, and Self-awareness.cvs
+matrix_4thy_data = pd.DataFrame()
+for keyword in keywords_list_4thy:
+    # Add logic for data generation based on keyword
+    # For demonstration purposes, let's generate random data
+    keyword_data = pd.DataFrame({'Feature': range(10), 'Value': torch.randn(10)})
+    matrix_4thy_data = pd.concat([matrix_4thy_data, keyword_data], axis=1)
+
+matrix_4thy_data.to_csv('Mtrix-4thy.csv', index=False)
+
+# Steps 2-5: Generate datasheet for General-AI(AGI), Narrow-AI, Theory-of.Mind, Self-awareness
 keywords_list_other = ["General AI (AGI)", "Narrow AI", "Theory of Mind", "Self-awareness"]
 
 for keyword in keywords_list_other:
-    keyword_data = torch.rand((100, 10))  # Replace with your data generation logic
-    keyword_df = pd.DataFrame(keyword_data.numpy(), columns=[f"{keyword}_{i}" for i in range(10)])
-    keyword_df.to_csv(f"{keyword}.csv", index=False)
+    # Add logic for data generation based on keyword
+    # For demonstration purposes, let's generate random data
+    keyword_data = pd.DataFrame({'Feature': range(10), 'Value': torch.randn(10)})
+    keyword_data.to_csv(f'{keyword}.csv', index=False)
 
-# Step 7: Create New Data LOV-e.Alhg.cvs
+# Steps 6-7: Create new data LOV-e.Alhg.cvs
 general_ai_data = pd.read_csv("General-AI(AGI).csv")
 narrow_ai_data = pd.read_csv("Narrow-AI.csv")
 theory_of_mind_data = pd.read_csv("Theory-of.Mind.csv")
@@ -26,30 +34,33 @@ resistance = 0.3
 love_alhg_data = general_ai_data + (narrow_ai_data / theory_of_mind_data * tolerance) + (resistance * 0.3)
 love_alhg_data.to_csv('LOV-e.Alhg.csv', index=False)
 
-# Step 8: Auto-AI-Training and Regeneration Logic
+# Steps 8-9: Auto-AI-Training and Regeneration Logic
 matrix_data = pd.read_csv("Mtrix-4thy.csv")
 lov_alhg_data = pd.read_csv("LOV-e.Alhg.csv")
 
 # Assuming you have a PyTorch model class similar to AutoTrainRegenModel
-class AutoTrainRegenModel(torch.nn.Module):
+class AutoTrainRegenModel(nn.Module):
     def __init__(self, input_size, output_size):
         super(AutoTrainRegenModel, self).__init__()
-        self.fc = torch.nn.Linear(input_size, output_size)
+        self.fc = nn.Linear(input_size, output_size)
 
     def forward(self, x):
         return self.fc(x)
 
-# Step 9: Initialize Model and Optimizer
-model = AutoTrainRegenModel(input_size=len(matrix_data.columns) + len(lov_alhg_data.columns), output_size=10)
-optimizer = torch.optim.Adam(model.parameters(), lr=0.001)
-criterion = torch.nn.MSELoss()  # Choose an appropriate loss function
+# Initialize Model and Optimizer
+input_size = len(matrix_data.columns) + len(lov_alhg_data.columns)
+output_size = 1
+model = AutoTrainRegenModel(input_size, output_size)
+optimizer = optim.Adam(model.parameters(), lr=0.001)
+criterion = nn.MSELoss(0.001)  # Choose an appropriate loss function with specified weight
 
-# Step 10: Combine Data from Both CSVs
+# Combine Data from Both CSVs
 combined_data = pd.concat([lov_alhg_data, matrix_data], axis=1)
 
 # Convert Data to PyTorch Tensors
 inputs = torch.tensor(combined_data.values, dtype=torch.float32)
-targets = torch.rand((100, 10))  # Replace with your target generation logic
+# Assuming you have target values for training (replace with your actual target column name)
+targets = torch.tensor(your_target_values, dtype=torch.float32)
 
 # Auto AI Training and Regeneration Logic with Specific Auto-Upgrade Logic
 num_epochs = 10
@@ -79,3 +90,4 @@ pill_data.to_csv('pill.csv', index=False)
 # Display and Analyze Results
 print("Auto Training and Regeneration Results:")
 print(pill_data)
+    
