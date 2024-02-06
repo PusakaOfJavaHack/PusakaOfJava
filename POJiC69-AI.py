@@ -29,17 +29,17 @@ generate_datasheet_with_progressbar2(["logic for data generation based on keywor
 generate_datasheet_with_progressbar2(["logic for data generation based on keyword", "Self-awareness"], "Self-awareness.csv")
 
 # Create new data combining existing data with progressbar2
-general_ai = pd.read_csv("General-AI(AGI).csv")
-self_awareness = pd.read_csv("Self-awareness.csv")
-narrow_ai = pd.read_csv("Narrow-AI.csv")
-theory_of_mind = pd.read_csv("Theory-of-Mind.csv")
+general_ai = pd.read_csv("General-AI(AGI).csv").astype(float)
+self_awareness = pd.read_csv("Self-awareness.csv").astype(float)
+narrow_ai = pd.read_csv("Narrow-AI.csv").astype(float)
+theory_of_mind = pd.read_csv("Theory-of-Mind.csv").astype(float)
 
 new_data = 0.7 * (general_ai + self_awareness) + 0.3 * (narrow_ai / theory_of_mind)
 new_data.to_csv("LOV-e.Alhg.csv", index=False)
 
 # Create Auto-AI-training and regeneration logic with progressbar2
-lov_e_alhg = pd.read_csv("LOV-e.Alhg.csv")
-matrix_4thy = pd.read_csv("Matrix-4thy.csv")
+lov_e_alhg = pd.read_csv("LOV-e.Alhg.csv").astype(float)
+matrix_4thy = pd.read_csv("Matrix-4thy.csv").astype(float)
 
 dataset = TensorDataset(torch.Tensor(lov_e_alhg.values), torch.Tensor(matrix_4thy.values))
 dataloader = DataLoader(dataset, batch_size=64, shuffle=True)
@@ -58,5 +58,5 @@ for epoch in tqdm(range(10), desc="Training Auto-AI Progress"):
         optimizer.step()
 
 # Logic for auto AI training and regeneration with progressbar2
-pill_data = torch.add(lov_e_alhg, 0.00001 * lov_e_alhg)
+pill_data = lov_e_alhg + 0.00001 * lov_e_alhg
 pill_data.to_csv("pill.csv", index=False)
