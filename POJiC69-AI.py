@@ -5,6 +5,25 @@ from torch.utils.data import DataLoader, TensorDataset
 from torch.nn import Module, Linear, MSELoss
 from torch.optim import Adam
 import numpy as np
+import sys
+import time
+
+# Loading bar ASCII art
+def loading_bar(iterable, total=None, prefix='Progress', length=50, fill='■', print_end='\r'):
+    total = total or len(iterable)
+
+    def print_bar(iteration):
+        percent = ("{0:.1f}").format(100 * (iteration / float(total)))
+        filled_length = int(length * iteration // total)
+        bar = fill * filled_length + '□' * (length - filled_length)
+        sys.stdout.write(f'\r{prefix} [{bar}] {percent}% Complete')
+        sys.stdout.flush()
+
+    for i, item in enumerate(iterable, 1):
+        yield item
+        print_bar(i)
+    sys.stdout.write(print_end)
+    sys.stdout.flush()
 
 # Create POJiC69 AI model
 class POJiC69Model(Module):
