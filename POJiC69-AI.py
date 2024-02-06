@@ -24,6 +24,12 @@ def generate_datasheet_with_progressbar2(keywords, filename):
 
 # Generate datasheets with progressbar2
 generate_datasheet_with_progressbar2(["handling", "missing values", "feature scaling", "preprocessing"], "Matrix-4thy.csv")
+
+# Adding concrete data to 'Matrix-4thy.csv'
+concrete_data_matrix = np.random.rand(10, 4)  # Assuming 10 samples with 4 features, adjust as needed
+concrete_df_matrix = pd.DataFrame(concrete_data_matrix, columns=["feature1", "feature2", "feature3", "feature4"])
+concrete_df_matrix.to_csv("Matrix-4thy.csv", index=False)
+
 generate_datasheet_with_progressbar2(["logic for data generation based on keyword", "General AI (AGI)"], "General-AI(AGI).csv")
 generate_datasheet_with_progressbar2(["logic for data generation based on keyword", "Narrow AI"], "Narrow-AI.csv")
 generate_datasheet_with_progressbar2(["logic for data generation based on keyword", "Theory of Mind"], "Theory-of-Mind.csv")
@@ -36,12 +42,6 @@ narrow_ai = pd.read_csv("Narrow-AI.csv").astype(float)
 theory_of_mind = pd.read_csv("Theory-of-Mind.csv").astype(float)
 
 new_data = 0.7 * (general_ai + self_awareness) + 0.3 * (narrow_ai / theory_of_mind)
-
-# Adding concrete data to 'LOV-e.Alhg.csv'
-concrete_data = np.random.rand(10, len(new_data.columns))  # Assuming 10 samples, adjust as needed
-concrete_df = pd.DataFrame(concrete_data, columns=new_data.columns)
-new_data = pd.concat([new_data, concrete_df], ignore_index=True)
-
 new_data.to_csv("LOV-e.Alhg.csv", index=False)
 
 # Create Auto-AI-training and regeneration logic with progressbar2
