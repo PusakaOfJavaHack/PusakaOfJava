@@ -42,10 +42,17 @@ lov_e_alhg = pd.read_csv("LOV-e.Alhg.csv").astype(float)
 matrix_4thy = pd.read_csv("Matrix-4thy.csv").astype(float)
 
 # Check if the datasets have any samples
-if len(lov_e_alhg) == 0:
-    raise ValueError("The 'LOV-e.Alhg.csv' dataset has no samples. Check your data loading.")
-elif len(matrix_4thy) == 0:
-    raise ValueError("The 'Matrix-4thy.csv' dataset has no samples. Check your data loading.")
+try:
+    if len(lov_e_alhg) == 0:
+        raise ValueError(f"The 'LOV-e.Alhg.csv' dataset has no samples. Check your data loading for 'LOV-e.Alhg.csv'.")
+except FileNotFoundError:
+    raise FileNotFoundError(f"The 'LOV-e.Alhg.csv' file is not found. Check if the file exists in the specified path.")
+
+try:
+    if len(matrix_4thy) == 0:
+        raise ValueError(f"The 'Matrix-4thy.csv' dataset has no samples. Check your data loading for 'Matrix-4thy.csv'.")
+except FileNotFoundError:
+    raise FileNotFoundError(f"The 'Matrix-4thy.csv' file is not found. Check if the file exists in the specified path.")
 
 dataset = TensorDataset(torch.Tensor(lov_e_alhg.values), torch.Tensor(matrix_4thy.values))
 dataloader = DataLoader(dataset, batch_size=64, shuffle=True)
