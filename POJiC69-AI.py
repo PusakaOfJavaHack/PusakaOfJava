@@ -823,41 +823,34 @@ def apply_security_patches(self):
 def download_security_patches(self):
         # Replace the URL with the actual endpoint to fetch security patches
         url = "https://example.com/security_patches"
-        
+
         try:
             response = requests.get(url)
             response.raise_for_status()  # Raise an exception for HTTP errors
             
-            patch_data = response.json()
+            patches = response.json()
 
-            if not patch_data:
+            if not patches:
                 print("No security patches available.")
                 return None
 
-            return patch_data
+            self.apply_patches_to_system(patches)
         except requests.exceptions.RequestException as e:
             print(f"Error fetching security patches: {e}")
             return None
-            
-        patches = self.download_security_patches()
 
-        if patches is not None:
-            # Continue with the rest of your program
-            print("Proceeding with the program after downloading security patches.")
-        else:
-            # Handle the case where there are no patches (adjust as needed)
-            print("Exiting or performing alternative action since no patches are available.")
-        
-    def apply_security_patches(self):
-        # Your implementation for applying security patches
-        print("Applying security patches...")
-
-def apply_patches_to_system(self, patches):
-        # Placeholder for applying patches to the system
-        # Replace this with your actual implementation, applying patches to the system
+    def apply_patches_to_system(self, patches):
+        # Your logic to apply each patch to the system
         for patch in patches:
-            print(f"Applying patch: {patch}")
-            # Add your logic to apply the patch to the system
+            self.apply_patch(patch)
+
+    def apply_patch(self, patch):
+        # Replace this with your actual logic for applying a single patch to the system
+        print(f"Applying patch: {patch}")
+
+    def your_next_process(self):
+        # Your logic for the next process in the program
+        print("Proceeding with the next process...")
 
 def get_current_software_version(self):
     # Pseudocode: Retrieve the current version of the software
@@ -1076,7 +1069,8 @@ ai_core.close_database()
 text_to_process = "This is a sample text for processing."
 nlp_processing_result = ai_core.process_text(text_to_process)
 aicore_instance = AICoreMaker()
-aicore_instance.apply_security_patches()
+aicore_instance.download_security_patches()
+aicore_instance.your_next_process() 
 
 code_to_analyze = """
 def sample_function():
