@@ -44,8 +44,8 @@ The AI Core Maker Tool is a versatile Python tool designed for various artificia
 3. Install additional NLTK and spaCy resources:
 
    ```bash
-   python -m nltk.downloader punkt
-   python -m spacy download en_core_web_sm
+   python3 -m nltk.downloader punkt
+   python3 -m spacy download en_core_web_sm
    ```
 
 ## Usage
@@ -54,7 +54,7 @@ The AI Core Maker Tool is a versatile Python tool designed for various artificia
 2. Execute the main script:
 
    ```bash
-   python main.py
+   python3 Jemboute-AI.py
    ```
 
 3. Follow the prompts and interact with the tool.
@@ -70,7 +70,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ### requirements.txt
 
-```plaintext
+```
 nltk==3.6.3
 spacy==3.1.3
 scikit-learn==0.24.2
