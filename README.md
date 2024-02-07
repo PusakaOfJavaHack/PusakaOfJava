@@ -31,8 +31,8 @@ The AI Core Maker Tool is a versatile Python tool designed for various artificia
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/your-username/ai-core-maker-tool.git
-   cd ai-core-maker-tool
+   git clone https://github.com/adearya69/PusakaOfJava.git
+   cd PusakaOfJava
    ```
 
 2. Install the required libraries:
@@ -84,5 +84,3 @@ Feel free to customize the description, installation instructions, and licensing
 Pusakaofjava Indonesia Corp is a technology company dedicated to advancing AI research and development. With a focus on innovation and practical applications, our team strives to contribute to the field of artificial intelligence and provide valuable solutions for various industries.
 
 For more information, visit [Pusakaofjava Indonesia Corp](https://www.kreatifindonesia.com.
-
-**Note:** Replace "yourusername" in the clone URL with your actual GitHub username. Adjust the details, such as the license and URLs, to match your project specifics.
