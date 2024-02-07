@@ -1075,8 +1075,8 @@ ai_core.train_nlp_model()
 ai_core.close_database()
 text_to_process = "This is a sample text for processing."
 nlp_processing_result = ai_core.process_text(text_to_process)
-your_instance = AICoreMaker()
-your_instance.apply_security_patches()
+aicore_instance = AICoreMaker()
+aicore_instance.apply_security_patches()
 
 code_to_analyze = """
 def sample_function():
