@@ -21,6 +21,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.pipeline import make_pipeline
+from sklearn.model_selection import train_test_split
 
 class AICoreMaker:
     def __init__(self):
@@ -85,11 +86,33 @@ class AICoreMaker:
 
         return {"entities": entities, "tokens": tokens}
 
-    def train_nlp_model(self, texts, labels):
-        # Train NLP model using TF-IDF
-        vectorizer = TfidfVectorizer()
-        X = vectorizer.fit_transform(texts)
-        self.nlp_model.fit(X, labels)
+    def __init__(self):
+        self.data = pd.DataFrame(columns=["Text", "Label"])
+        self.nlp_model = None  # Initialize nlp_model attribute
+
+    def add_data(self, text, label):
+        # Add data to in-memory storage
+        new_data = pd.DataFrame({"Text": [text], "Label": [label]})
+        self.data = pd.concat([self.data, new_data], ignore_index=True)
+
+    def train_nlp_model(self):
+        if self.data.empty:
+            print("No data available for training.")
+            return
+
+        X_train, X_test, y_train, y_test = train_test_split(
+            self.data["Text"], self.data["Label"], test_size=0.2, random_state=42
+        )
+
+        # Initialize nlp_model as a pipeline with TF-IDF vectorizer and RandomForestClassifier
+        self.nlp_model = make_pipeline(
+            TfidfVectorizer(),
+            RandomForestClassifier(n_estimators=100, random_state=42)
+        )
+
+        # Fit the model
+        self.nlp_model.fit(X_train, y_train)
+        print("NLP model trained successfully.")
 
     def train_ml_models(self, data):
         # Split data into features and labels
