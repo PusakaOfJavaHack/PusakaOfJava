@@ -105,8 +105,8 @@ class AICoreMaker:
 
     def add_data(self, text, label):
         # Add data to in-memory storage
-        self.data = self.data.append({"Text": text, "Label": label}, ignore_index=True)
-
+        new_data = pd.DataFrame({"Text": [text], "Label": [label]})
+        self.data = pd.concat([self.data, new_data], ignore_index=True)
         # Store data in SQLite database
         with self.conn:
             self.conn.execute('''
