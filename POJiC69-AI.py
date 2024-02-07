@@ -21,10 +21,15 @@ class AICoreMaker:
     def __init__(self):
         self.data = pd.DataFrame(columns=["Text", "Label"])
 
-    def add_data(self, text, label):
-        new_data = pd.DataFrame({"Text": [text], "Label": [label]})
-        self.data = self.data.append(new_data, ignore_index=True)
+    def add_data(self, texts, labels):
+        total_samples = len(texts)
+        progress_bar = tqdm(total=total_samples, desc="Adding Data", unit="sample")
 
+        data_to_append = pd.DataFrame({"Text": texts, "Label": labels})
+        self.data = pd.concat([self.data, data_to_append], ignore_index=True)
+
+        progress_bar.close()
+        
         # Initialize NLP model
         self.nlp = spacy.load("en_core_web_sm")
 
