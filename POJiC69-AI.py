@@ -16,21 +16,40 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score, classification_report
 from bs4 import BeautifulSoup
 from tqdm import tqdm
-
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.pipeline import make_pipeline
 
 class AICoreMaker:
     def __init__(self):
         self.data = pd.DataFrame(columns=["Text", "Label"])
+        self.nlp_model = None
 
     def add_data(self, text, label):
-        total_samples = 1000
-        progress_bar = tqdm(total=total_samples, desc="Adding Data", unit="sample")
-
         new_data = pd.DataFrame({"Text": [text], "Label": [label]})
         self.data = pd.concat([self.data, new_data], ignore_index=True)
 
-        progress_bar.close()
-        
+    def train_nlp_model(self):
+        if self.data.empty:
+            print("No data available for training.")
+            return
+
+        X_train, X_test, y_train, y_test = train_test_split(
+            self.data["Text"], self.data["Label"], test_size=0.2, random_state=42
+        )
+
+        model = make_pipeline(
+            TfidfVectorizer(),
+            RandomForestClassifier(n_estimators=100, random_state=42)
+        )
+
+        model.fit(X_train, y_train)
+
+        self.nlp_model = model
+        print("NLP model trained successfully.")
+
         # Initialize NLP model
         self.nlp = spacy.load("en_core_web_sm")
 
