@@ -15,18 +15,19 @@ from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score, classification_report
 from bs4 import BeautifulSoup
+from tqdm import tqdm
 
 
 class AICoreMaker:
     def __init__(self):
         self.data = pd.DataFrame(columns=["Text", "Label"])
 
-    def add_data(self, texts, labels):
-        total_samples = len(texts)
+    def add_data(self, text, label):
+        total_samples = 1000
         progress_bar = tqdm(total=total_samples, desc="Adding Data", unit="sample")
 
-        data_to_append = pd.DataFrame({"Text": texts, "Label": labels})
-        self.data = pd.concat([self.data, data_to_append], ignore_index=True)
+        new_data = pd.DataFrame({"Text": [text], "Label": [label]})
+        self.data = pd.concat([self.data, new_data], ignore_index=True)
 
         progress_bar.close()
         
