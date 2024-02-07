@@ -40,8 +40,65 @@ The AI Core Maker Tool is a versatile Python tool designed for various artificia
    ```bash
    pip install -r requirements.txt
    ```
+The error you're encountering seems to be related to permission issues while trying to generate metadata for the `spacy` package. This might happen due to insufficient permissions in the temporary directory where the metadata is being generated.
 
-3. Install additional NLTK and spaCy resources:
+Here are a few steps you can try to resolve the issue:
+
+1. **Use a Virtual Environment:**
+   Before installing any packages, make sure you are working within a virtual environment. This helps avoid permission issues related to system-wide package installations.
+
+   ```bash
+   python -m venv venv
+   source venv/bin/activate  # On Unix or MacOS
+   # or
+   .\venv\Scripts\activate   # On Windows
+   ```
+
+2. **Upgrade pip and Setuptools:**
+   Ensure that you have the latest versions of `pip` and `setuptools`. You can upgrade them with the following commands:
+
+   ```bash
+   pip install --upgrade pip setuptools
+   ```
+
+3. **Retry Installation:**
+   After upgrading `pip` and `setuptools`, try reinstalling the package:
+
+   ```bash
+   pip install spacy
+   ```
+
+   If you are installing other packages along with `spacy`, you can include them in your `requirements.txt` file and install all of them together.
+
+   ```plaintext
+   spacy==3.1.3
+   # Include other packages as needed
+   ```
+
+4. **Check File Permissions:**
+   Ensure that your user has the necessary permissions to write to the specified temporary directories. If you are working in a shared environment or a system-managed environment, you may need to contact your system administrator.
+
+5. **Temporary Directory Cleanup:**
+   Sometimes, issues can arise from temporary files that weren't properly cleaned up. You can try cleaning your temporary directories:
+
+   ```bash
+   rm -rf /tmp/pip-modern-metadata-4obtzvk_/
+   ```
+
+   After that, retry the installation.
+
+6. **Use a User Directory for pip:**
+   If you are still facing issues, you can try installing the package in the user directory:
+
+   ```bash
+   pip install --user spacy
+   ```
+
+   This installs the package locally for the user, avoiding potential permission problems.
+
+Try these steps, and if the issue persists, you may need to check your system's file and directory permissions or seek assistance from your system administrator.
+
+7. Install additional NLTK and spaCy resources:
 
    ```bash
    python3 -m nltk.downloader punkt
