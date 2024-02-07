@@ -1,6 +1,5 @@
 import nltk
 import spacy
-from sklearn import code_analysis
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import CodeRegenerator
 from sklearn import FeedbackLoop
@@ -33,7 +32,8 @@ class AICoreMakerTool:
         doc = self.nlp_processor(text)
 
     def analyze_code(self, code):
-        code_analysis.analyze(code)
+        # Placeholder for code analysis logic
+        print("Performing code analysis...")
 
     def train_machine_learning_model(self):
         train_data, test_data = train_test_split(self.dataset, test_size=0.2)
