@@ -1,4 +1,4 @@
-qimport ast
+import ast
 import spacy
 import pandas as pd
 import sqlite3
