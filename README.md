@@ -66,21 +66,10 @@ Contributions are welcome! Please fork the repository and create a pull request 
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-```
-
-### requirements.txt
-
-```markdown
-nltk==3.6.3
-spacy==3.1.3
-scikit-learn==0.24.2
-tqdm==4.62.3
-alive-progress==1.6.1
-```
 
 Feel free to customize the description, installation instructions, and licensing information according to your project's specifics. Update the placeholders such as `your-username`, `ai-core-maker-tool`, and others with your actual details.
 
 ### Who is Pusakaofjava Indonesia Corp?
 Pusakaofjava Indonesia Corp is a technology company dedicated to advancing AI research and development. With a focus on innovation and practical applications, our team strives to contribute to the field of artificial intelligence and provide valuable solutions for various industries.
 
-For more information, visit [Pusakaofjava Indonesia Corp](https://www.kreatifindonesia.com.
+For more information, visit [Pusakaofjava Indonesia Corp](https://www.kreatifindonesia.com)
