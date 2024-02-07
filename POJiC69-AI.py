@@ -162,14 +162,6 @@ class AICoreMaker:
 
         print("User interaction logic executed.")
 
-    def process_text(self, text):
-        # Pseudocode: Perform NLP tasks on user-provided text
-        # Replace with actual NLP processing logic
-        doc = self.nlp(text)
-        entities = [ent.text for ent in doc.ents]
-        tokens = [token.text for token in doc]
-        return {"entities": entities, "tokens": tokens}
-
     def analyze_code(self, code):
         # Pseudocode: Analyze user-provided code
         try:
