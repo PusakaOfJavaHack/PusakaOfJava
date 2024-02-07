@@ -801,9 +801,7 @@ def download_security_patches(self):
         except requests.exceptions.RequestException as e:
             print(f"Error fetching security patches: {e}")
             return None
-
-    def your_program_logic(self):
-        # Example program logic
+            
         patches = self.download_security_patches()
 
         if patches is not None:
