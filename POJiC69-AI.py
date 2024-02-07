@@ -773,10 +773,6 @@ class AICoreMaker:
 
             return latest_software_version > current_software_version
 
-    def check_for_software_updates(self):
-    # Pseudocode: Check for available software updates
-    # Replace with actual logic to verify if updates are available
-    
 def apply_security_patches(self):
         # Implementation for downloading security patches
         patches = self.download_security_patches()
