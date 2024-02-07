@@ -1,7 +1,6 @@
 astroid
 spacy
 pandas
-sqlite3
 subprocess32
 requests
 beautifulsoup4
