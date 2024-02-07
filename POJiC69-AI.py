@@ -801,15 +801,19 @@ def download_security_patches(self):
         except requests.exceptions.RequestException as e:
             print(f"Error fetching security patches: {e}")
             return None
-            
-if patches is not None:
-    # Continue with the rest of your program
-    print("Proceeding with the program after downloading security patches.")
-else:
-    # Handle the case where there are no patches (adjust as needed)
-    print("Exiting or performing alternative action since no patches are available.")
-    
-    def apply_patches_to_system(self, patches):
+
+    def your_program_logic(self):
+        # Example program logic
+        patches = self.download_security_patches()
+
+        if patches is not None:
+            # Continue with the rest of your program
+            print("Proceeding with the program after downloading security patches.")
+        else:
+            # Handle the case where there are no patches (adjust as needed)
+            print("Exiting or performing alternative action since no patches are available.")
+
+def apply_patches_to_system(self, patches):
         # Placeholder for applying patches to the system
         # Replace this with your actual implementation, applying patches to the system
         for patch in patches:
