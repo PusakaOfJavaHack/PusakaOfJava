@@ -891,10 +891,6 @@ def apply_patches_to_system(self):
     # Replace with actual patching procedures
     self.apply_downloaded_patches()
 
-        
-    class AICoreMaker:
-    # ... (previous code remains unchanged)
-
     def maintainability_and_explainability(self):
         # Maintainability and explainability logic
 
