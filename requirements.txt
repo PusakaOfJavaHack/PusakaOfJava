@@ -1,7 +1,6 @@
 astroid
 spacy
 pandas
-subprocess
 requests
 beautifulsoup4
 scikit-learn
