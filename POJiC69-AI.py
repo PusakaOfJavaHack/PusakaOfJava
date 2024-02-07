@@ -27,6 +27,7 @@ class AICoreMaker:
     def __init__(self):
         self.data = pd.DataFrame(columns=["Text", "Label"])
         self.nlp_model = None  # Initialize nlp_model attribute
+        self.nlp = spacy.load("en_core_web_sm")  # Initialize spaCy language model
 
     def add_data(self, text, label):
         # Add data to in-memory storage
@@ -67,15 +68,11 @@ class AICoreMaker:
             ''')
 
     def process_text(self, text):
-        # Perform NLP tasks
+        # Process text using the spaCy language model
         doc = self.nlp(text)
-
-        # Extract entities and tokens (words)
-        entities = [ent.text for ent in doc.ents]
-        tokens = [token.text for token in doc]
-
-        return {"entities": entities, "tokens": tokens}
-
+        # Add your processing logic here
+        return doc
+        
     def add_data(self, text, label):
         # Add data to in-memory storage
         new_data = pd.DataFrame({"Text": [text], "Label": [label]})
@@ -1103,6 +1100,8 @@ ai_core = AICoreMaker()
 ai_core.add_data("Sample text for classification", "Class_A")
 ai_core.train_nlp_model()
 ai_core.close_database()
+text_to_process = "This is a sample text for processing."
+nlp_processing_result = ai_core.process_text(text_to_process)
 
 code_to_analyze = """
 def sample_function():
