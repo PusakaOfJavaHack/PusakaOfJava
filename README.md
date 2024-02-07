@@ -70,7 +70,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ### requirements.txt
 
-```
+```markdown
 nltk==3.6.3
 spacy==3.1.3
 scikit-learn==0.24.2
