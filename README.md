@@ -98,7 +98,7 @@ Here are a few steps you can try to resolve the issue:
 
 Try these steps, and if the issue persists, you may need to check your system's file and directory permissions or seek assistance from your system administrator.
 
-7. Install additional NLTK and spaCy resources:
+7. **Install additional NLTK and spaCy resources:**
 
    ```bash
    python3 -m nltk.downloader punkt
@@ -115,6 +115,10 @@ Try these steps, and if the issue persists, you may need to check your system's 
    ```
 
 3. Follow the prompts and interact with the tool.
+
+## Check Output Files:
+
+Model checkpoints and other outputs will be saved in the current directory. You can find them in the following formats: .pb, .h5, .pt, .pth, .pkl.
 
 ## Contributing
 
