@@ -103,6 +103,20 @@ class AICoreMaker:
         self.ml_model_classification.fit(X_classification, y_classification)
         self.ml_model_regression.fit(X_regression, y_regression)
 
+    def __init__(self, database_path='your_database.db'):
+        self.data = pd.DataFrame(columns=["Text", "Label"])
+        self.conn = sqlite3.connect(database_path)
+        self.initialize_database()
+
+    def initialize_database(self):
+        with self.conn:
+            self.conn.execute('''
+                CREATE TABLE IF NOT EXISTS data_table (
+                    Text TEXT,
+                    Label TEXT
+                )
+            ''')
+
     def add_data(self, text, label):
         # Add data to in-memory storage
         new_data = pd.DataFrame({"Text": [text], "Label": [label]})
@@ -113,6 +127,10 @@ class AICoreMaker:
                 INSERT INTO data_table (Text, Label)
                 VALUES (?, ?)
             ''', (text, label))
+
+    def close_database(self):
+        self.conn.close()
+
 
     def analyze_code(self, code):
         try:
@@ -1125,6 +1143,7 @@ def apply_patches_to_system(self):
 ai_core = AICoreMaker()
 ai_core.add_data("Sample text for classification", "Class_A")
 ai_core.train_nlp_model(ai_core.data["Text"], ai_core.data["Label"])
+ai_core.close_database()
 
 code_to_analyze = """
 def sample_function():
