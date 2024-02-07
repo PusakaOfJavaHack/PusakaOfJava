@@ -38,6 +38,9 @@ The AI Core Maker Tool is a versatile Python tool designed for various artificia
 2. Install the required libraries:
 
    ```bash
+   sudo apt-get install build-essential libssl-dev libffi-dev python3-dev
+   sudo apt-get install libopenblas-dev
+   
    pip install -r requirements.txt
    ```
 The error you're encountering seems to be related to permission issues while trying to generate metadata for the `spacy` package. This might happen due to insufficient permissions in the temporary directory where the metadata is being generated.
