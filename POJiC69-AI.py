@@ -19,6 +19,12 @@ from bs4 import BeautifulSoup
 
 class AICoreMaker:
     def __init__(self):
+        self.data = pd.DataFrame(columns=["Text", "Label"])
+
+    def add_data(self, text, label):
+        new_data = pd.DataFrame({"Text": [text], "Label": [label]})
+        self.data = self.data.append(new_data, ignore_index=True)
+
         # Initialize NLP model
         self.nlp = spacy.load("en_core_web_sm")
 
