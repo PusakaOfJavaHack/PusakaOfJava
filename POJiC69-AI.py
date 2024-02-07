@@ -26,68 +26,6 @@ from sklearn.model_selection import train_test_split
 class AICoreMaker:
     def __init__(self):
         self.data = pd.DataFrame(columns=["Text", "Label"])
-        self.nlp_model = None
-
-    def add_data(self, text, label):
-        new_data = pd.DataFrame({"Text": [text], "Label": [label]})
-        self.data = pd.concat([self.data, new_data], ignore_index=True)
-
-    def train_nlp_model(self):
-        if self.data.empty:
-            print("No data available for training.")
-            return
-
-        X_train, X_test, y_train, y_test = train_test_split(
-            self.data["Text"], self.data["Label"], test_size=0.2, random_state=42
-        )
-
-        model = make_pipeline(
-            TfidfVectorizer(),
-            RandomForestClassifier(n_estimators=100, random_state=42)
-        )
-
-        model.fit(X_train, y_train)
-
-        self.nlp_model = model
-        print("NLP model trained successfully.")
-
-        # Initialize NLP model
-        self.nlp = spacy.load("en_core_web_sm")
-
-        # Initialize ML models
-        self.nlp_model = RandomForestClassifier()
-        self.ml_model_classification = RandomForestClassifier()
-        self.ml_model_regression = LinearRegression()
-
-        # Initialize data storage
-        self.data = pd.DataFrame(columns=["Text", "Label"])
-
-        # Connect to SQLite database
-        self.conn = sqlite3.connect("ai_core_db.db")
-        self.create_table()
-
-    def create_table(self):
-        # Create a table for storing data
-        with self.conn:
-            self.conn.execute('''
-                CREATE TABLE IF NOT EXISTS data_table (
-                    Text TEXT,
-                    Label TEXT
-                )
-            ''')
-
-    def process_text(self, text):
-        # Perform NLP tasks
-        doc = self.nlp(text)
-
-        # Extract entities and tokens (words)
-        entities = [ent.text for ent in doc.ents]
-        tokens = [token.text for token in doc]
-
-        return {"entities": entities, "tokens": tokens}
-
-    def __init__(self):
-        self.data = pd.DataFrame(columns=["Text", "Label"])
         self.nlp_model = None  # Initialize nlp_model attribute
 
     def add_data(self, text, label):
@@ -128,6 +66,16 @@ class AICoreMaker:
                     Label TEXT
                 )
             ''')
+
+    def process_text(self, text):
+        # Perform NLP tasks
+        doc = self.nlp(text)
+
+        # Extract entities and tokens (words)
+        entities = [ent.text for ent in doc.ents]
+        tokens = [token.text for token in doc]
+
+        return {"entities": entities, "tokens": tokens}
 
     def add_data(self, text, label):
         # Add data to in-memory storage
