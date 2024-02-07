@@ -33,13 +33,13 @@ class AICoreMaker:
         new_data = pd.DataFrame({"Text": [text], "Label": [label]})
         self.data = pd.concat([self.data, new_data], ignore_index=True)
 
-    def train_nlp_model(self, texts, labels):
-        if self.data.empty:
-            print("No data available for training.")
+    def train_nlp_model(self):
+        if self.data.shape[0] < 2:  # Check if there are at least two samples
+            print("Not enough data for training. Need at least two samples.")
             return
 
         X_train, X_test, y_train, y_test = train_test_split(
-            texts, labels, test_size=0.2, random_state=42
+            self.data["Text"], self.data["Label"], test_size=0.2, random_state=42
         )
 
         # Initialize nlp_model as a pipeline with TF-IDF vectorizer and RandomForestClassifier
@@ -51,8 +51,7 @@ class AICoreMaker:
         # Fit the model
         self.nlp_model.fit(X_train, y_train)
         print("NLP model trained successfully.")
-
-
+        
     def __init__(self, database_path='your_database.db'):
         self.data = pd.DataFrame(columns=["Text", "Label"])
         self.conn = sqlite3.connect(database_path)
