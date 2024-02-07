@@ -847,6 +847,10 @@ def download_security_patches(self):
         else:
             # Handle the case where there are no patches (adjust as needed)
             print("Exiting or performing alternative action since no patches are available.")
+        
+    def apply_security_patches(self):
+        # Your implementation for applying security patches
+        print("Applying security patches...")
 
 def apply_patches_to_system(self, patches):
         # Placeholder for applying patches to the system
