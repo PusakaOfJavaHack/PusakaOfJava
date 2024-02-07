@@ -1,6 +1,6 @@
 import nltk
 import spacy
-from sklearn import code_analysis
+# Placeholder for code analysis functionality
 from sklearn.exceptions import CodeError
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import CodeRegenerator
