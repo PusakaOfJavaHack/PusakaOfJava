@@ -1101,7 +1101,7 @@ def apply_patches_to_system(self):
 # Example usage:
 ai_core = AICoreMaker()
 ai_core.add_data("Sample text for classification", "Class_A")
-ai_core.train_nlp_model(ai_core.data["Text"], ai_core.data["Label"])
+ai_core.train_nlp_model()
 ai_core.close_database()
 
 code_to_analyze = """
