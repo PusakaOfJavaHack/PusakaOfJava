@@ -1,9 +1,4 @@
-# Pusakaofjava Indonesia Corp AI 
-Certainly! Below is a template for a GitHub README file. You can copy and paste this into your repository and customize it to match your project's specifics.
-
-
-# Chatbot with Execution and Analysis
-
+# Pusakaofjava Indonesia Corp AI Chatbot with Execution and Analysis
 This project implements a chatbot with code execution, analysis, and machine learning model training functionalities. Users can interact with the chatbot, execute Python code, analyze the code using pylint, and train machine learning models.
 
 
