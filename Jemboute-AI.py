@@ -1,7 +1,7 @@
 import nltk
 import spacy
 from sklearn.model_selection import train_test_split
-from sklearn import FeedbackLoop
+from sklearn.some_module import FeedbackLoop
 import user_interaction_module
 import security_measures_module
 import information_retrieval_module
