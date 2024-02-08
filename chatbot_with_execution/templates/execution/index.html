@@ -1,0 +1,59 @@
+<!-- chatbot_with_execution/templates/execution/index.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Execution and Analysis</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>Code Execution and Analysis</h1>
+    </div>
+
+    <div class="execution-container">
+        <h2>Code Execution</h2>
+        <textarea id="codeInput" class="code-editor" placeholder="Enter Python code here..."></textarea>
+        <button onclick="executeCode()">Execute Code</button>
+        <div class="execution-output" id="executionOutput"></div>
+    </div>
+
+    <div class="analysis-container">
+        <h2>Code Analysis</h2>
+        <textarea id="analyzeInput" class="code-editor" placeholder="Enter Python code for analysis..."></textarea>
+        <button onclick="analyzeCode()">Analyze Code</button>
+        <div class="analysis-output" id="analysisOutput"></div>
+    </div>
+
+    <div class="train-model-container">
+        <h2>Train Machine Learning Model</h2>
+        <button onclick="trainModel()">Train Model</button>
+        <div class="train-model-output" id="trainModelOutput"></div>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.1.2/socket.io.js"></script>
+<script>
+    var socket = io.connect('http://' + document.domain + ':' + location.port + '/chat');
+
+    function executeCode() {
+        var codeInput = document.getElementById('codeInput').value;
+        socket.emit('user_input', {'user_message': codeInput});
+    }
+
+    function analyzeCode() {
+        var analyzeInput = document.getElementById('analyzeInput').value;
+        socket.emit('user_input', {'user_message': analyzeInput});
+    }
+
+    function trainModel() {
+        socket.emit('user_input', {'user_message': 'Train machine learning model'});
+    }
+</script>
+
+</body>
+</html>
