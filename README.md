@@ -1,4 +1,4 @@
-# Pusakaofjava Indonesia Corp AI Chatbot with Execution and Analysis
+# Pusakaofjava Indonesia Corp Artificial Intelligence (AI) Chatbot with Execution and Analysis
 This project implements a chatbot with code execution, analysis, and machine learning model training functionalities. Users can interact with the chatbot, execute Python code, analyze the code using pylint, and train machine learning models.
 
 
