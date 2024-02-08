@@ -1,0 +1,51 @@
+<!-- chatbot_with_execution/templates/chat/index.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot with Execution</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>Chatbot with Execution</h1>
+    </div>
+
+    <div class="chat-container">
+        {% for message in conversation %}
+            <div class="{{ message.user and 'user-message' or 'bot-message' }}">
+                <strong>{{ message.user and 'You:' or 'Bot:' }}</strong> {{ message.user or message.bot }}
+                <span class="timestamp">{{ message.timestamp }}</span>
+            </div>
+        {% endfor %}
+    </div>
+
+    <div class="input-container">
+        <input type="text" id="userInput" placeholder="Type a message...">
+        <button onclick="sendMessage()">Send</button>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.1.2/socket.io.js"></script>
+<script>
+    var socket = io.connect('http://' + document.domain + ':' + location.port + '/chat');
+
+    socket.on('bot_response', function (data) {
+        addMessage('Bot', data.bot_response, data.timestamp);
+    });
+
+    function sendMessage() {
+        var userInput = document.getElementById('userInput').value;
+        addMessage('You', userInput, getCurrentTimestamp());
+        socket.emit('user_input', {'user_message': userInput});
+        document.getElementById('userInput').value = '';
+    }
+
+    function addMessage(sender, message, timestamp) {
+        var chatContainer = document.querySelector('.chat-container');
+        var newMessage = document.createElement('div');
+        newMessage.className = sender === 'You' ? 'user-message' :
