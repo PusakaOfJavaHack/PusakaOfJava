@@ -1,6 +1,0 @@
-spacy
-scikit-learn
-tqdm
-alive-progress
-torch
-nltk
